@@ -5,11 +5,15 @@ pipeline {
         }
     }
 
+    environment {
+      path: "/opt/apache-maven-3.9.4/bin:$PATH"
+    }
+
     stages {
-        stage('Hello') {
-            steps {
-                git branch: 'main', url: 'https://github.com/NaumanMunir9/project-2---code---02102023'
-            }
+      stage("build") {
+        steps {
+          sh 'mvn clean deploy'
         }
+      }
     }
 }
